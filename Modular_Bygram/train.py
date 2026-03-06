@@ -1,5 +1,6 @@
 import torch
 from bygram_model import BigramLanguageModel, get_vocab
+from tqdm.auto import tqdm
 
 # Hyperparameters
 batch_size = 32
@@ -9,6 +10,7 @@ max_iters = 3000
 eval_interval = 300
 eval_iters = 200
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+progress_bar = tqdm(range(max_iters))
 #-----------------------------------------------------#
 print(f"Using device: {device}")
 # --------------------------#
@@ -58,6 +60,7 @@ for iter in range(max_iters):
     if iter % eval_interval == 0:
         losses = estimate_loss()
         print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+        progress_bar.update(eval_interval)
     
     # Sample a batch of data
     xb, yb = get_batch('train')

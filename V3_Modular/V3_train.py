@@ -1,4 +1,5 @@
 import torch
+from tqdm import tqdm
 from V3_model import BigramLanguageModel, get_vocab
 
 # Hyperparameters
@@ -8,6 +9,7 @@ max_iters = 5000
 eval_interval = 500
 learning_rate = 3e-4
 eval_iters = 200
+progress_bar = tqdm(range(max_iters))
 # --------------------------#
 
 # Device configuration
@@ -61,6 +63,7 @@ for iter in range(max_iters):
     if iter % eval_interval == 0:
         losses = estimate_loss()
         print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+        progress_bar.update(eval_interval)
 
     if iter == max_iters-1:
         losses = estimate_loss()
