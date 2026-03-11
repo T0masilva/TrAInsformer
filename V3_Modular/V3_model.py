@@ -52,8 +52,8 @@ class MultiHeadAttention(nn.Module):
         return out
     
 class FeedForward(nn.Module):
-    """A simple feed-forward neural network with a ReLU activation."""
-    
+    """Simple feed-forward neural network with a ReLU activation."""
+
     def __init__(self, n_embd):
         super().__init__()
         self.net = nn.Sequential(
@@ -67,7 +67,7 @@ class FeedForward(nn.Module):
         return self.net(x)
 
 class Block(nn.Module):
-    """A single transformer block consisting of multi-head self-attention and feed-forward network."""
+    """Single transformer block consisting of multi-head self-attention and feed-forward network."""
     
     def __init__(self, n_embd, n_head):
         super().__init__()
