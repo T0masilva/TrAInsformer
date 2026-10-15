@@ -1,2 +1,2 @@
 # TrAInsformer
-AI-shenanigans
+AI stuff for self learning
